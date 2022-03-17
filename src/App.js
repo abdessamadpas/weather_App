@@ -1,12 +1,31 @@
 import React, { useState, useEffect } from "react";
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Button from '@material-ui/core/Button';
+import { makeStyles} from '@material-ui/core/styles';
+
 
 const api = {
   key: "5759b361eac3e0a1b9098b397b27fcab",
-  base: "https://api.openweathermap.org/data/2.5/" //* THIS API KEY MAY BE DESACTIVED SO  NEED TO GENERATE NEW ONE FROM THE SAME DB *//
+  base: "https://api.openweathermap.org/data/2.5/"
 }
 
+
+const useStyles = makeStyles({
+  root: {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    border: 0,
+    borderRadius: 3,
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+  },
+});
 function App() {
   const [query, setQuery] = useState('tanger');
+  //const classes = useStyles();
+  const classes = useStyles();
 
 
   const [weather, setWeather] = useState({});
@@ -86,6 +105,9 @@ function App() {
         </>
         ) : (
           <>
+          <Backdrop className={classes.backdrop} > //** for loading app */
+        <CircularProgress color="inherit" />
+      </Backdrop>
         <div className="location-box">
           
            <div className="weather-box">
